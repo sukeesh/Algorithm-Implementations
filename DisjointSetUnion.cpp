@@ -1,14 +1,11 @@
-/*
-    @author Sukeesh
-    Disjoint Set Union
-*/
+#define maxn 10000
 
-ll Parent[10000], rank[10000], N;
+ll Parent[maxn], rankk[maxn];
 
 void make_set(){
-	for(ll i=1;i<=N;i++){
-		Parent[i]=x;
-		rank[i]=0;
+	for(ll i=0;i<maxn;i++){
+		Parent[i]=i;
+		rankk[i]=0;
 	}
 }
 
@@ -19,18 +16,18 @@ ll find(ll x){
     return Parent[x];
 }
 
-void uunion(ll &x,ll &y){
+void uunion(ll x,ll y){
     ll PX=find(x),PY=find(y);
     if(PX==PY){ 
     	return;
     }
-    if(rank[PX]>rank[PY]){
+    if(rankk[PX]>rankk[PY]){
         Parent[PY]=PX;
     }
     else{
         Parent[PX]=PY;
-        if(rank[PX]==rank[PY]){
-            rank[PY]++;
+        if(rankk[PX]==rankk[PY]){
+            rankk[PY]++;
         }
     }
 }

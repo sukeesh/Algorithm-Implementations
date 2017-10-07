@@ -48,7 +48,7 @@ ll query(ll node, ll start, ll end, ll l, ll r){
 
 // Updating an interval ( No Lazy Propagation )
 
-void updateRange(ll node, ll end, ll l, ll r, ll val){
+void updateRange(ll node, ll start, ll end, ll l, ll r, ll val){
 	if(start > end || start > r || end < l){
 		return;
 	}

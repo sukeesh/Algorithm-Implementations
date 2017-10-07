@@ -3,18 +3,18 @@
     Binary Indexed Trees
 */
 
-void set(ll ix, ll val, ll N) {
-  while(ix <= N) {
+void update(ll ix, ll val) {
+  while(ix <= n) {
     tree[ix] += val;
     ix += (ix & -ix);
   }
 }
 
-ll get(ll ix) {
+ll query(ll ix) {
   ll res = 0;
-  while(x) {
-    res += tree[x];
-    x -= (x & -x);
+  while(ix) {
+    res += tree[ix];
+    ix -= (ix & -ix);
   }
   return res;
 }

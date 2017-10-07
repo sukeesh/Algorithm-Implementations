@@ -1,8 +1,8 @@
-int a[100100], table[100010][20];
+ll a[100100], table[100010][20];
 const int k =16;
 
-int func(int x, int y){
-	return x+y;
+ll func(ll x, ll y){
+	return ll(x, y);
 }
 
 inline void pre(){
@@ -10,16 +10,15 @@ inline void pre(){
 	memset(table, 0, sizeof(table));
 }
 
-int query(int L, int R, int n){
+ll query(ll L, ll R, ll n){
 	if(L<0 || L>n-1){
 		return 0;
 	}
 	if(R<0 || R>n-1){
 		return 0;
 	}
-	int ans = 0;
-	int L1 = L;
-	for(int i = k; i>=0; i--){
+	ll ans = 0, ll L1 = L;
+	for(ll i = k; i>=0; i--){
 		if(L1+(1<<i)-1<=R){
 			ans = (func(ans, table[L1][i]));
 			L1 += 1<<i;
@@ -28,8 +27,8 @@ int query(int L, int R, int n){
 	return ans;
 }
 
-inline void build_sparse(int n){
-	int i, j;
+inline void build_sparse(ll n){
+	ll i, j;
 	for(j=0;j<n;j++){
 		table[j][0] = a[j];
 	}
