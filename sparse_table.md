@@ -3,7 +3,7 @@ What are sparse tables?
 - Data structure that allows range queries
 - Can answer most queries in O(log n)
 - But can answer Range Minimum Queries in O(1) for idempotent functions
-- It can only used on immutable arrays. If you need any change, whole DS needs to be changed
+- It can be only used on immutable arrays. If you need any change, whole DS needs to be changed
 
 Intuition
 
@@ -17,6 +17,24 @@ Precomputation
 
 - We will maintain a 2D array
 - Where table[i][j] will store the answer for the range [i, i + 2^j - 1] which can be split nicely into ranges 
-    - [i, i + 2^(j-1) - 1] and [i + 2^(j-1), i + 2^j - 1] both of length 2^{j-1}
+    - [i, i + 2^{j-1} - 1] and [i + 2^(j-1), i + 2^j - 1] both of length 2^{j-1}
     - So, we can generate this table with dynamic programming
-    - 
+
+logarithmic values
+```cpp
+int log[MAXN+1];
+log[1] = 0;
+for (int i = 2; i <= MAXN; i++)
+    log[i] = log[i/2] + 1;
+```
+
+computing sparse table
+```cpp
+for (int i = 0; i < MAXN; i++)
+    table[i][0] = f(array[i]);
+
+for (int j = 1; j <= K; j++)
+    for (int i = 0; i + (1 << j) <= MAXN; i++)
+        table[i][j] = f(table[i][j-1], table[i + (1 << (j - 1))][j - 1]);
+```
+`K = log2(MAXN) + 1`
